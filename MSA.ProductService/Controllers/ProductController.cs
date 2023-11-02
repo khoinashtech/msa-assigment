@@ -59,10 +59,10 @@ namespace MSA.ProductService.Controllers
             };
             await _repository.CreateAsync(product);
 
-            await publishEndpoint.Publish(new ProductCreated
-            {
-                ProductId = product.Id
-            });
+            // await publishEndpoint.Publish(new ProductCreated
+            // {
+            //     ProductId = product.Id
+            // });
 
             return CreatedAtAction(nameof(PostAsync), product.AsDto());
         }

@@ -47,9 +47,9 @@ builder.Services.AddSwaggerGen(options =>
                  TokenUrl = new Uri($"{srvUrlsSetting.IdentityServiceUrl}/connect/token"),
                  Scopes = new Dictionary<string, string>
                 {
-                                         { "productapi.read", "Access read operations" },
+                    { "productapi.read", "Access read operations" },
                     { "productapi.write", "Access write operations" }
-                                     }
+                }
              }
          },
          Type = SecuritySchemeType.OAuth2

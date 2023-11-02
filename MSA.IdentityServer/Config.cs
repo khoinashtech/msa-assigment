@@ -18,6 +18,8 @@ namespace MSA.IdentityService.DummyData
                 new ApiScope("productapi.write"),
                 new ApiScope("orderapi.read"),
                 new ApiScope("orderapi.write"),
+                new ApiScope("bankapi.read"),
+                new ApiScope("bankapi.write"),
             };
 
         public static IEnumerable<ApiResource> ApiResources => new[]
@@ -31,6 +33,13 @@ namespace MSA.IdentityService.DummyData
             new ApiResource("orderapi")
             {
                 Scopes = new List<string> {"orderapi.read", "orderapi.write"},
+                ApiSecrets = new List<Secret> { new Secret("Scopesecret".Sha256())},
+                UserClaims = new List<string> {"role"}
+            },
+
+            new ApiResource("bankapi")
+            {
+                Scopes = new List<string> {"bankapi.read", "bankapi.write"},
                 ApiSecrets = new List<Secret> { new Secret("Scopesecret".Sha256())},
                 UserClaims = new List<string> {"role"}
             }
@@ -52,7 +61,9 @@ namespace MSA.IdentityService.DummyData
                         "productapi.read",
                         "productapi.write",
                         "orderapi.read",
-                        "orderapi.write"
+                        "orderapi.write",
+                        "bankapi.read",
+                        "bankapi.write"
                     }
                 },
 
@@ -69,7 +80,7 @@ namespace MSA.IdentityService.DummyData
                     PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "productapi.read", "productapi.write" }
+                    AllowedScopes = { "openid", "profile", "productapi.read", "productapi.write"}
                 },
 
                 // product-swagger client using code flow + pkce
@@ -86,6 +97,21 @@ namespace MSA.IdentityService.DummyData
 
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "productapi.read", "productapi.write" }
+                },
+
+                new Client
+                {
+                    ClientId = "bank-swagger",
+                    RequireClientSecret = false,
+
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = false,
+
+                    RedirectUris = { "https://localhost:5009/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins = { "https://localhost:5009" },
+
+                    AllowOfflineAccess = true,
+                    AllowedScopes = { "openid", "profile", "bankapi.read", "bankapi.write" }
                 }
             };
     }
