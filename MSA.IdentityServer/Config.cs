@@ -75,9 +75,9 @@ namespace MSA.IdentityService.DummyData
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:5002/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:5002/signout-oidc",
-                    PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
+                    RedirectUris = { "https://product-service:5002/signin-oidc" },
+                    FrontChannelLogoutUri = "https://product-service:5002/signout-oidc",
+                    PostLogoutRedirectUris = { "https://product-service:5002/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "productapi.read", "productapi.write"}
@@ -92,8 +92,8 @@ namespace MSA.IdentityService.DummyData
                     AllowedGrantTypes = GrantTypes.Code,
                     RequirePkce = false,
 
-                    RedirectUris = { "https://localhost:5002/swagger/oauth2-redirect.html" },
-                    AllowedCorsOrigins = { "https://localhost:5002" },
+                    RedirectUris = { "https://product-service:5002/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins = { "https://product-service:5002" },
 
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "productapi.read", "productapi.write" }
@@ -107,8 +107,8 @@ namespace MSA.IdentityService.DummyData
                     AllowedGrantTypes = GrantTypes.Code,
                     RequirePkce = false,
 
-                    RedirectUris = { "https://localhost:5009/swagger/oauth2-redirect.html" },
-                    AllowedCorsOrigins = { "https://localhost:5009" },
+                    RedirectUris = { "https://bank-service:5009/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins = { "https://bank-service:5009" },
 
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "bankapi.read", "bankapi.write" }
